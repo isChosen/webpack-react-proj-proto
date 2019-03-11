@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hotel_pro</title>
+    <link rel="stylesheet" href="./dist/static/css/reset.min.css" />
+    <link rel="stylesheet" href="./dist/static/css/iconfont.min.css" />
+  <link rel="shortcut icon" href="./dist/favicon.ico"><link href="./dist/css/chunk-libs.26a92d.css" rel="stylesheet"><link href="./dist/css/main.026648.css" rel="stylesheet"></head>
+  <body>
+    <div id="root" style="text-align: center; margin-top: 10px;">应用加载中，请稍候...</div>
+
+    <!--[if lt IE 10]>
+      <script src="./dist/static/lib/es5-shim-min.js"></script>
+      <script src="./dist/static/lib/es5-sham-min.js"></script>
+    <![endif]-->
+    <script>
+     /*
+      * 1rem = 100px，基于1920px的宽度比例
+      * 单位统一保留三位小数(转换成px为一位小数)，eg: width: 0.125rem;(12.5px)
+      */
+      function setRem() {
+        const html = document.documentElement;
+        const size = 19.2;
+        window.rem = html.getBoundingClientRect().width / size;
+        html.style.fontSize = window.rem + 'px';
+      }
+      window.onresize = function() {
+        setRem();
+      }
+      setRem();
+      /**
+       * 检测浏览器环境是否需要 polyfill
+       * modern browser 不需要添加 polyfill.min.js 避免多余的代码
+       * 只能用 var, 因为 ie10- 不支持 const let
+       */
+      var modernBrowser = 'assign' in Object && 'Promise' in window;
+      if (!modernBrowser) {
+        var scriptEle = document.createElement('script');
+        scriptEle.async = false;
+        scriptEle.src = './dist/static/lib/polyfill.min.js';
+        document.head.appendChild(scriptEle);
+      }
+    </script>
+    <script type="text/javascript" src="./dist/dll/react.dll.js"></script>
+    <script type="text/javascript" src="./dist/dll/react_router.dll.js"></script>
+  <script type="text/javascript" src="./dist/bundle/chunk-libs.204457.js"></script><script type="text/javascript" src="./dist/bundle/main.bundle.4549.js"></script></body>
+</html>

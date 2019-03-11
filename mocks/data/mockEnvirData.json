@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "id": 1,
+      "name": "temp-mock",
+      "label": "室内温度",
+      "data": 28.6,
+      "unit": "℃"
+    },
+    {
+      "id": 2,
+      "name": "humidity-mock",
+      "label": "室内湿度",
+      "data": 87,
+      "unit": "%"
+    }
+  ]
+}
