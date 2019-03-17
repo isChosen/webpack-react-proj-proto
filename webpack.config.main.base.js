@@ -1,8 +1,8 @@
 /*
  * @Author: liangchaoshun
  * @Date: 2019-1-25 11:38:25
- * @Last Modified by: liangchaoshun
- * @Last Modified time: 2019-03-11 15:45:45
+ * @Last Modified by: Detcx
+ * @Last Modified time: 2019-03-17 18:58:16
  * @Description: Webpack Configuration Base
  */
 
@@ -38,25 +38,25 @@ module.exports = {
           chunks: 'initial'
         },
         antd: {
-          name: 'chunk-antd',
+          name: 'vendor-antd',
           test: /[\\/]node_modules[\\/]antd[\\/]/,
           priority: 20,
           chunks: 'async'
         },
         axios: {
-          name: 'chunk-axios',
+          name: 'vendor-axios',
           test: /[\\/]node_modules[\\/]axios[\\/]/,
           priority: 25,
           chunks: 'async'
         },
         lodash: {
-          name: 'chunk-lodash',
+          name: 'vendor-lodash',
           test: /[\\/]node_modules[\\/]lodash[\\/]/,
           priority: 30,
           chunks: 'async'
         },
         echarts: {
-          name: 'chunk-echarts',
+          name: 'vendor-echarts',
           test: /[\\/]node_modules[\\/]echarts[\\/]/,
           priority: 35,
           chunks: 'async'

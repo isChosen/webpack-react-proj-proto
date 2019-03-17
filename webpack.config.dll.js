@@ -1,28 +1,28 @@
 /*
  * @Author: liangchaoshun
  * @Date: 2019-1-25 11:34:34
- * @Last Modified by: liangchaoshun
- * @Last Modified time: 2019-03-08 16:19:35
+ * @Last Modified by: Detcx
+ * @Last Modified time: 2019-03-17 16:55:17
  * @Description: Dll Base
  */
 
 const os = require('os');
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 module.exports = env => {
-
   let terminal;
   const devConf = { mode: 'development' };
   const proConf = {
     mode: 'production',
     optimization: {
       minimizer: [
-        new UglifyJsPlugin({
-          parallel: os.cpus().length - 1
+        new TerserPlugin({
+          test: /\.js$/i,
+          parallel: true
         })
       ]
     }
@@ -57,7 +57,7 @@ module.exports = env => {
     ]
   }
   // 区分环境
-  if (env.NODE_ENV === 'development') {
+  if (env.NODE_ENV === 'dev') {
     terminal = { ...baseConf, ...devConf };
   } else {
     terminal = { ...baseConf, ...proConf };

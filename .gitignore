@@ -3,9 +3,9 @@
 # compiled output
 /dist
 /dll
-/cache
+/.cache
 /tmp
-/analysis
+/.analysis
 /out-tsc
 
 # dependencies

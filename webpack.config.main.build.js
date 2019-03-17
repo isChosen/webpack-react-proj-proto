@@ -1,23 +1,21 @@
 /*
  * @Author: liangchaoshun
  * @Date: 2019-1-25 11:42:19
- * @Last Modified by: liangchaoshun
- * @Last Modified time: 2019-03-11 20:03:02
+ * @Last Modified by: Detcx
+ * @Last Modified time: 2019-03-17 19:39:06
  * @Description: Webpack Configuration Production
  */
 
-const os = require("os");
 const path = require("path");
-const webpack = require('webpack');
 const merge = require("webpack-merge");
 const base = require("./webpack.config.main.base");
+const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = env => merge.smart(base, {
+module.exports = merge.smart(base, {
   mode: "production",
 
   output: {
@@ -29,11 +27,11 @@ module.exports = env => merge.smart(base, {
   optimization: {
     minimizer: [
       // 压缩 js
-      new UglifyJsPlugin({
-        cache: path.resolve(__dirname, "cache"),
-        parallel: os.cpus().length - 1
+      new TerserPlugin({
+        test: /\.js$/i,
+        cache: path.resolve(__dirname, ".cache"),
+        parallel: true
       }),
-
       // 压缩分离的 css
       new OptimizeCssAssetsPlugin({
         cssProcessor: require("cssnano"),
@@ -45,21 +43,16 @@ module.exports = env => merge.smart(base, {
   },
 
   plugins: [
-  
     // 清理文件
-    new CleanWebpackPlugin(["dist", "analysis"], {exclude: ['dll']}),
+    new CleanWebpackPlugin(["dist", ".analysis"], {exclude: ['dll']}),
 
     // 模板
     new HtmlWebpackPlugin({
       inject: 'body',
       filename: '../index.html',
       title: 'Summer_cloud_pro',
-      favicon: __dirname + '/favicon.ico',
-      template: __dirname + '/tmpl/index.pro.html'
-    }),
-
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV)
+      favicon: path.join(__dirname, 'favicon.ico'),
+      template: path.join(__dirname, 'tmpl', 'index.pro.html')
     }),
 
     new CopyWebpackPlugin([

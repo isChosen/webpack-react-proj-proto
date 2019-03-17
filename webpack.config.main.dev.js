@@ -1,19 +1,20 @@
 /*
  * @Author: liangchaoshun
  * @Date: 2018-11-01 12:16:57
- * @Last Modified by: liangchaoshun
- * @Last Modified time: 2019-03-11 20:03:32
+ * @Last Modified by: Detcx
+ * @Last Modified time: 2019-03-17 18:29:34
  * @Description: Webpack Configuration Development
  */
 
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const Mock = require('./mocks/mockConf');
+const base = require('./webpack.config.main.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const base = require('./webpack.config.main.base');
-const Mock = require('./mocks/mockConf');
 
-module.exports = env => merge.smart(base, {
+module.exports = merge.smart(base, {
   mode: 'development',
   devtool: 'eval-source-map',
 
@@ -69,20 +70,16 @@ module.exports = env => merge.smart(base, {
       inject: 'body',
       filename: 'index.html',
       title: 'Summer_cloud_dev',
-      favicon: __dirname + '/favicon.ico',
-      template: __dirname + '/tmpl/index.dev.html'
+      favicon: path.resolve(__dirname, 'favicon.ico'),
+      template: path.resolve(__dirname, 'tmpl', 'index.dev.html')
     }),
-
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV)
-    })
 
     /* 
     // 输出分析
     new BundleAnalyzerPlugin({
       analyzerPort: 2019,
       generateStatsFile: true,
-      statsFilename: '../analysis/stats.json'
+      statsFilename: '../.analysis/stats.json'
     })
     */
   ]
