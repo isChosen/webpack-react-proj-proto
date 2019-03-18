@@ -1,8 +1,8 @@
 /*
  * @Author: liangchaoshun
  * @Date: 2019-1-25 11:42:19
- * @Last Modified by: Detcx
- * @Last Modified time: 2019-03-17 19:39:06
+ * @Last Modified by: liangchaoshun
+ * @Last Modified time: 2019-03-18 10:31:55
  * @Description: Webpack Configuration Production
  */
 
@@ -51,8 +51,8 @@ module.exports = merge.smart(base, {
       inject: 'body',
       filename: '../index.html',
       title: 'Summer_cloud_pro',
-      favicon: path.join(__dirname, 'favicon.ico'),
-      template: path.join(__dirname, 'tmpl', 'index.pro.html')
+      favicon: path.resolve(__dirname, 'favicon.ico'),
+      template: path.resolve(__dirname, 'tmpl', 'index.pro.html')
     }),
 
     new CopyWebpackPlugin([

@@ -97,10 +97,10 @@
     "redux-saga": "^1.0.1"
   },
   "scripts": {
-    "dll:dev": "webpack --progress --config webpack.config.dll.js --env.NODE_ENV=development",
-    "dll:pro": "webpack --progress --config webpack.config.dll.js --env.NODE_ENV=production",
-    "start:self": "webpack-dev-server --config webpack.config.main.dev.js --env.NODE_ENV=development",
-    "build:self": "webpack --progress --config webpack.config.main.build.js --env.NODE_ENV=production",
+    "dll:dev": "webpack --progress --config webpack.config.dll.js --env.NODE_ENV=dev",
+    "dll:pro": "webpack --progress --config webpack.config.dll.js --env.NODE_ENV=pro",
+    "start:self": "webpack-dev-server --config webpack.config.main.dev.js",
+    "build:self": "webpack --progress --config webpack.config.main.build.js",
     "start": "npm run dll:dev && npm run start:self",
     "build": "npm run dll:pro && npm run build:self"
   }
